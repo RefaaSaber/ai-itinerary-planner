@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { generateItinerary } from "../hooks/useOpenAI";
+import { generateItinerary } from "../hooks/useGemini";
 
 function PlanTrip() {
   const [destination, setDestination] = useState("");

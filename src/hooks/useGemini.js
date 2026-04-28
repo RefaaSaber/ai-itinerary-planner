@@ -8,19 +8,15 @@ afternoon activity, dinner recommendation, and estimated costs.
 Format it clearly with Day 1, Day 2, etc.`;
 
   const response = await axios.post(
-    "https://api.openai.com/v1/chat/completions",
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${import.meta.env.VITE_GEMINI_API_KEY}`,
     {
-      model: "gpt-3.5-turbo",
-      messages: [{ role: "user", content: prompt }],
-      max_tokens: 1500,
-    },
-    {
-      headers: {
-        Authorization: `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`,
-        "Content-Type": "application/json",
-      },
+      contents: [
+        {
+          parts: [{ text: prompt }]
+        }
+      ]
     }
   );
 
-  return response.data.choices[0].message.content;
+  return response.data.candidates[0].content.parts[0].text;
 }
