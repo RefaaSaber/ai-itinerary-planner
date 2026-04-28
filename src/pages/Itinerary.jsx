@@ -21,10 +21,6 @@ function Itinerary() {
         onClick={() => navigate("/plan")}>
         Plan Another Trip
       </button>
-      <button className="btn btn-primary mt-3"
-        onClick={() => navigate("/map")}>
-        View on Map
-      </button>
     </div>
   );
 }

@@ -6,7 +6,6 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import PlanTrip from "./pages/PlanTrip";
 import Itinerary from "./pages/Itinerary";
-import MapView from "./pages/MapView";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
@@ -22,9 +21,6 @@ function App() {
           } />
           <Route path="/itinerary" element={
             <PrivateRoute><Itinerary /></PrivateRoute>
-          } />
-          <Route path="/map" element={
-            <PrivateRoute><MapView /></PrivateRoute>
           } />
         </Routes>
       </BrowserRouter>
