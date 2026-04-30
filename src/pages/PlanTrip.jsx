@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { generateItinerary } from "../hooks/useGemini";
+import Navbar from "../components/Navbar";
 
 function PlanTrip() {
   const [destination, setDestination] = useState("");
@@ -10,13 +11,13 @@ function PlanTrip() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const interestOptions = ["History", "Nature", "Shopping", "Food", "Adventure"];
+  const options = ["History", "Nature", "Shopping", "Food", "Adventure"];
 
-  function handleInterest(interest) {
+  function handleInterest(i) {
     setInterests(prev =>
-      prev.includes(interest)
-        ? prev.filter(i => i !== interest)
-        : [...prev, interest]
+      prev.includes(i)
+        ? prev.filter(x => x !== i)
+        : [...prev, i]
     );
   }
 
@@ -25,38 +26,110 @@ function PlanTrip() {
       alert("Please fill in all fields");
       return;
     }
+
     setLoading(true);
+
     try {
-      const result = await generateItinerary(destination, budget, interests, days);
-      navigate("/itinerary", { state: { itinerary: result, destination } });
-    } catch (err) {
-      alert("Something went wrong. Please try again.");
+      const result = await generateItinerary(
+        destination,
+        budget,
+        interests,
+        days
+      );
+
+      navigate("/itinerary", {
+        state: { itinerary: result, destination }
+      });
+
+    } catch {
+      alert("Something went wrong. Try again.");
     }
+
     setLoading(false);
   }
 
   return (
-    <div className="container mt-5" style={{ maxWidth: "500px" }}>
-      <h2>Plan Your Trip ✈️</h2>
-      <input className="form-control my-2" placeholder="Destination"
-        onChange={e => setDestination(e.target.value)} />
-      <input className="form-control my-2" placeholder="Budget ($)"
-        type="number" onChange={e => setBudget(e.target.value)} />
-      <input className="form-control my-2" placeholder="Number of Days"
-        type="number" onChange={e => setDays(e.target.value)} />
-      <p className="mt-2">Interests:</p>
-      {interestOptions.map(interest => (
-        <div key={interest} className="form-check">
-          <input className="form-check-input" type="checkbox"
-            onChange={() => handleInterest(interest)} />
-          <label className="form-check-label">{interest}</label>
+    <>
+      <Navbar />
+
+      <div className="container mt-5 d-flex justify-content-center">
+        <div
+          className="card shadow-lg p-4 border-0"
+          style={{
+            maxWidth: "600px",
+            width: "100%",
+            borderRadius: "15px"
+          }}
+        >
+          <h2 className="text-primary text-center mb-4 fw-bold">
+            ✈️ Plan Your Trip
+          </h2>
+
+          {/* Destination */}
+          <label className="fw-semibold mb-1">Destination</label>
+          <input
+            className="form-control mb-3"
+            placeholder="e.g. Paris"
+            onChange={e => setDestination(e.target.value)}
+          />
+
+          {/* Budget */}
+          <label className="fw-semibold mb-1">Budget ($)</label>
+          <input
+            className="form-control mb-3"
+            type="number"
+            placeholder="Enter your budget"
+            onChange={e => setBudget(e.target.value)}
+          />
+
+          {/* Days */}
+          <label className="fw-semibold mb-1">Number of Days</label>
+          <input
+            className="form-control mb-3"
+            type="number"
+            placeholder="e.g. 5"
+            onChange={e => setDays(e.target.value)}
+          />
+
+          {/* Interests */}
+          <p className="fw-bold mt-3 mb-2">Interests</p>
+
+          <div className="d-flex flex-wrap gap-2">
+            {options.map(i => (
+              <button
+                key={i}
+                type="button"
+                className={`btn ${
+                  interests.includes(i)
+                    ? "btn-primary"
+                    : "btn-outline-primary"
+                } rounded-pill px-3`}
+                onClick={() => handleInterest(i)}
+              >
+                {i}
+              </button>
+            ))}
+          </div>
+
+          {/* Generate Button */}
+          <button
+            className="btn btn-primary mt-4 w-100 py-2 fw-semibold"
+            onClick={handleGenerate}
+            disabled={loading}
+            style={{ borderRadius: "10px" }}
+          >
+            {loading ? (
+              <>
+                <span className="spinner-border spinner-border-sm me-2"></span>
+                Generating...
+              </>
+            ) : (
+              "Generate My Plan 🗺️"
+            )}
+          </button>
         </div>
-      ))}
-      <button className="btn btn-primary mt-3 w-100"
-        onClick={handleGenerate} disabled={loading}>
-        {loading ? "Generating..." : "Generate My Plan"}
-      </button>
-    </div>
+      </div>
+    </>
   );
 }
 

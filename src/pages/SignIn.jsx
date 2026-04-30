@@ -14,26 +14,46 @@ function SignIn() {
       setError("Please fill in all fields");
       return;
     }
+
     try {
       await signInWithEmailAndPassword(auth, email, password);
       navigate("/plan");
-    } catch (err) {
+    } catch {
       setError("Wrong email or password");
     }
   }
 
   return (
-    <div className="container mt-5" style={{ maxWidth: "400px" }}>
-      <h2>Sign In</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <input className="form-control my-2" placeholder="Email"
-        onChange={e => setEmail(e.target.value)} />
-      <input className="form-control my-2" type="password"
-        placeholder="Password"
-        onChange={e => setPassword(e.target.value)} />
-      <button className="btn btn-primary w-100"
-        onClick={handleSignIn}>Sign In</button>
-      <p className="mt-2">No account? <Link to="/signup">Sign Up</Link></p>
+    <div className="container mt-5" style={{ maxWidth: "450px" }}>
+      <div className="card shadow p-4">
+        <h2 className="text-center text-primary mb-4">Sign In</h2>
+
+        {error && <div className="alert alert-danger">{error}</div>}
+
+        <input
+          className="form-control my-2"
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <input
+          className="form-control my-2"
+          type="password"
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <button
+          className="btn btn-primary w-100 mt-3"
+          onClick={handleSignIn}
+        >
+          Sign In
+        </button>
+
+        <p className="text-center mt-3">
+          No account? <Link to="/signup">Sign Up</Link>
+        </p>
+      </div>
     </div>
   );
 }
