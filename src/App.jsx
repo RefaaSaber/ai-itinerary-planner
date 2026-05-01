@@ -6,6 +6,8 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import PlanTrip from "./pages/PlanTrip";
 import Itinerary from "./pages/Itinerary";
+import Profile from "./pages/Profile";
+import About from "./pages/About";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
@@ -22,6 +24,10 @@ function App() {
           <Route path="/itinerary" element={
             <PrivateRoute><Itinerary /></PrivateRoute>
           } />
+          <Route path="/profile" element={
+            <PrivateRoute><Profile /></PrivateRoute>
+          } />
+          <Route path="/about" element={<About />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

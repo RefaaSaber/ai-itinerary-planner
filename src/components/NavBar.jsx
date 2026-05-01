@@ -11,14 +11,17 @@ function Navbar() {
   }
 
   return (
-    <nav className="navbar navbar-dark bg-primary px-4">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-primary px-4">
       <Link className="navbar-brand fw-bold" to="/plan">
         ✈️ AI Itinerary Planner
       </Link>
-
-      <button className="btn btn-outline-light" onClick={handleLogout}>
-        Logout
-      </button>
+      <div className="d-flex gap-3 ms-auto">
+        <Link className="btn btn-outline-light" to="/">Home</Link>
+        <Link className="btn btn-outline-light" to="/plan">Plan Trip</Link>
+        <Link className="btn btn-outline-light" to="/profile">Profile</Link>
+        <Link className="btn btn-outline-light" to="/about">About Us</Link>
+        <button className="btn btn-light" onClick={handleLogout}>Logout</button>
+      </div>
     </nav>
   );
 }
