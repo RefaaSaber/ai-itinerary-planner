@@ -30,9 +30,9 @@ A web application that generates personalized travel itineraries using Artificia
 ---
 
 ## made by :
-ruba alghamdi 
-reffa saber
-amani alzahrani
+- ruba alghamdi 
+- refaa saber
+- amani alzahrani
 
 ---
 ## 🚀 How to Run
