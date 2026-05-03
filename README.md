@@ -29,14 +29,17 @@ A web application that generates personalized travel itineraries using Artificia
 
 ---
 
+## made by :
+ruba alghamdi 
+reffa saber
+amani alzahrani
+
+---
 ## 🚀 How to Run
 
 1. Clone the repository:
 ```bash
 git clone https://github.com/RefaaSaber/ai-itinerary-planner.git
 
----
-## made by :
-ruba alghamdi 
-reffa saber
-amani alzahrani
+
+
