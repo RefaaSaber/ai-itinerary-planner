@@ -28,6 +28,19 @@ A web application that generates personalized travel itineraries using Artificia
 - Bootstrap / CSS
 
 ---
+## 🧪 Testing
+
+- Sign Up → ✅ Works correctly  
+- Sign In → ✅ Works correctly  
+- Wrong password → ✅ Error message appears  
+- Empty fields validation → ✅ Works correctly  
+- Generate itinerary → ✅ AI generates structured plan  
+- Protected routes → ✅ Redirects unauthorized users  
+- About Us page → ✅ Loads correctly  
+- Profile page → ✅ Displays user data  
+- Mobile responsiveness → ✅ Works on small screens  
+
+---
 
 ## made by :
 - ruba alghamdi 
