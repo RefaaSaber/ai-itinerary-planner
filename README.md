@@ -6,8 +6,8 @@ A web application that generates personalized travel itineraries using Artificia
 
 ## 👩‍💻 Team Members
 - Ruba — AI & Testing  
-- Person 1 — Backend Developer  
-- Person 2 — Frontend Developer  
+- amani — Backend Developer  
+- refaa — Frontend Developer  
 
 ---
 
